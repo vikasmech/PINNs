@@ -19,6 +19,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.gridspec as gridspec
 
 np.random.seed(1234)
+tf.compat.v1.disable_eager_execution()
 tf.random.set_seed(1234)
 
 class PhysicsInformedNN:
@@ -49,7 +50,7 @@ class PhysicsInformedNN:
         self.lambda_2 = tf.Variable([0.0], dtype=tf.float32)
         
         # tf placeholders and graph
-        self.sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True,
+        self.sess = tf.compat.v1.Session(config=tf.ConfigProto(allow_soft_placement=True,
                                                      log_device_placement=True))
         
         self.x_tf = tf.placeholder(tf.float32, shape=[None, self.x.shape[1]])
