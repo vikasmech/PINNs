@@ -50,7 +50,7 @@ class PhysicsInformedNN:
         self.lambda_2 = tf.Variable([0.0], dtype=tf.float32)
         
         # tf placeholders and graph
-        self.sess = tf.compat.v1.Session(config=tf.ConfigProto(allow_soft_placement=True,
+        self.sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True,
                                                      log_device_placement=True))
         
         self.x_tf = tf.placeholder(tf.float32, shape=[None, self.x.shape[1]])
