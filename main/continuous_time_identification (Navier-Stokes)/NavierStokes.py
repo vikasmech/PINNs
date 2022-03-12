@@ -5,9 +5,8 @@
 import sys
 sys.path.insert(0, '../../Utilities/')
 
-#import tensorflow as tf
-import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
+import tensorflow as tf
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io
@@ -21,7 +20,6 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.gridspec as gridspec
 
 np.random.seed(1234)
-tf.compat.v1.disable_eager_execution()
 tf.set_random_seed(1234)
 
 class PhysicsInformedNN:
