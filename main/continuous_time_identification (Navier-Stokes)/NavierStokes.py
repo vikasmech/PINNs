@@ -53,12 +53,12 @@ class PhysicsInformedNN:
         self.sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True,
                                                      log_device_placement=True))
         
-        self.x_tf = tf.placeholder(tf.float32, shape=[None, self.x.shape[1]])
-        self.y_tf = tf.placeholder(tf.float32, shape=[None, self.y.shape[1]])
-        self.t_tf = tf.placeholder(tf.float32, shape=[None, self.t.shape[1]])
+        self.x_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.x.shape[1]])
+        self.y_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.y.shape[1]])
+        self.t_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.t.shape[1]])
         
-        self.u_tf = tf.placeholder(tf.float32, shape=[None, self.u.shape[1]])
-        self.v_tf = tf.placeholder(tf.float32, shape=[None, self.v.shape[1]])
+        self.u_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.u.shape[1]])
+        self.v_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.v.shape[1]])
         
         self.u_pred, self.v_pred, self.p_pred, self.f_u_pred, self.f_v_pred = self.net_NS(self.x_tf, self.y_tf, self.t_tf)
         
