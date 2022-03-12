@@ -67,7 +67,7 @@ class PhysicsInformedNN:
                     tf.reduce_sum(tf.square(self.f_u_pred)) + \
                     tf.reduce_sum(tf.square(self.f_v_pred))
                     
-        self.optimizer = tf.opt.ScipyOptimizerInterface(self.loss, 
+        self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss, 
                                                                 method = 'L-BFGS-B', 
                                                                 options = {'maxiter': 50000,
                                                                            'maxfun': 50000,
