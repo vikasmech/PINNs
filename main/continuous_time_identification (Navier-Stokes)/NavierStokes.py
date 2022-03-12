@@ -22,7 +22,7 @@ import matplotlib.gridspec as gridspec
 
 np.random.seed(1234)
 tf.compat.v1.disable_eager_execution()
-tf.random.set_seed(1234)
+tf.set_random_seed(1234)
 
 class PhysicsInformedNN:
     # Initialize the class
