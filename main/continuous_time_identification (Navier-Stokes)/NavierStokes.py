@@ -5,7 +5,9 @@
 import sys
 sys.path.insert(0, '../../Utilities/')
 
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io
@@ -50,15 +52,15 @@ class PhysicsInformedNN:
         self.lambda_2 = tf.Variable([0.0], dtype=tf.float32)
         
         # tf placeholders and graph
-        self.sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(allow_soft_placement=True,
+        self.sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True,
                                                      log_device_placement=True))
         
-        self.x_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.x.shape[1]])
-        self.y_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.y.shape[1]])
-        self.t_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.t.shape[1]])
+        self.x_tf = tf.placeholder(tf.float32, shape=[None, self.x.shape[1]])
+        self.y_tf = tf.placeholder(tf.float32, shape=[None, self.y.shape[1]])
+        self.t_tf = tf.placeholder(tf.float32, shape=[None, self.t.shape[1]])
         
-        self.u_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.u.shape[1]])
-        self.v_tf = tf.compat.v1.placeholder(tf.float32, shape=[None, self.v.shape[1]])
+        self.u_tf = tf.placeholder(tf.float32, shape=[None, self.u.shape[1]])
+        self.v_tf = tf.placeholder(tf.float32, shape=[None, self.v.shape[1]])
         
         self.u_pred, self.v_pred, self.p_pred, self.f_u_pred, self.f_v_pred = self.net_NS(self.x_tf, self.y_tf, self.t_tf)
         
@@ -67,7 +69,7 @@ class PhysicsInformedNN:
                     tf.reduce_sum(tf.square(self.f_u_pred)) + \
                     tf.reduce_sum(tf.square(self.f_v_pred))
                     
-        self.optimizer = tf.compat.v1.contrib.opt.ScipyOptimizerInterface(self.loss, 
+        self.optimizer = tf.contrib.opt.ScipyOptimizerInterface(self.loss, 
                                                                 method = 'L-BFGS-B', 
                                                                 options = {'maxiter': 50000,
                                                                            'maxfun': 50000,
